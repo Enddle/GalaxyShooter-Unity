@@ -6,6 +6,8 @@ public class Powerup : MonoBehaviour {
 
     private float speed = 3f;
 
+    [SerializeField] private int powerupId = 0;
+
     // Start is called before the first frame update
     void Start() {
         
@@ -32,23 +34,28 @@ public class Powerup : MonoBehaviour {
             
             if (p != null) {
 
-                bool isMax = false;
-
-                switch (this.tag) {
+                switch (this.powerupId) {
                     
-                    case "TripleShot":
+                    case 1:  // Triple Shot
+
+                        p.Powerup(Player.PowerupType.TripleShot);
                         break;
 
-                    case "MaxShot":
-                        isMax = true;
+                    case 2:  // Max Shot
+
+                        p.Powerup(Player.PowerupType.MaxShot);
+                        break;
+
+                    case 3:  // Speed Boost
+
+                        p.Powerup(Player.PowerupType.SpeedBoost);
                         break;
 
                     default:
+                        Debug.Log("Powerup Type Error.");
                         break;
                 }
 
-                p.ShotPowerup(isMax);
-            
                 Destroy(this.gameObject);
             }
         }

@@ -124,26 +124,49 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public IEnumerator ShotPowerdown(bool isMax) {
+    public enum PowerupType {
+        TripleShot,
+        MaxShot,
+        SpeedBoost
+    }
+
+    public IEnumerator Powerdown(PowerupType type) {
 
         yield return new WaitForSeconds(5f);
 
-        if (isMax) {
-            canMaxShot = false;
-        } else {
-            canTripleShot = false;
+        switch (type) {
+            
+            case PowerupType.TripleShot:
+                canTripleShot = false;
+                break;
+
+            case PowerupType.MaxShot:
+                canMaxShot = false;
+                break;
+
+            case PowerupType.SpeedBoost:
+                speed = 5f;
+                break;
         }
     }
 
-    public void ShotPowerup(bool isMax) {
+    public void Powerup(PowerupType type) {
 
-        if (isMax) {
-            canMaxShot = true;
-        } else {
-            canTripleShot = true;
+        switch (type) {
+
+            case PowerupType.TripleShot:
+                canTripleShot = true;
+                break;
+
+            case PowerupType.MaxShot:
+                canMaxShot = true;
+                break;
+
+            case PowerupType.SpeedBoost:
+                speed = 7.5f;
+                break;
         }
-
-        StartCoroutine(ShotPowerdown(isMax));
+        StartCoroutine(Powerdown(type));
     }
 
 }  // end Player
