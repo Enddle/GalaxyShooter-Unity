@@ -36,6 +36,8 @@ public class Player : MonoBehaviour {
 
     [SerializeField] private GameObject MaxShotPrefab;
 
+    [SerializeField] private int lives = 3;
+
     // methods/functions - blocks of code
 
     // Start is called before the first frame update
@@ -124,49 +126,53 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public enum PowerupType {
-        TripleShot,
-        MaxShot,
-        SpeedBoost
-    }
-
-    public IEnumerator Powerdown(PowerupType type) {
+    public IEnumerator PowerDown(Powerup.Type type) {
 
         yield return new WaitForSeconds(5f);
 
         switch (type) {
             
-            case PowerupType.TripleShot:
+            case Powerup.Type.TripleShot:
                 canTripleShot = false;
                 break;
 
-            case PowerupType.MaxShot:
+            case Powerup.Type.MaxShot:
                 canMaxShot = false;
                 break;
 
-            case PowerupType.SpeedBoost:
+            case Powerup.Type.SpeedBoost:
                 speed = 5f;
                 break;
         }
     }
 
-    public void Powerup(PowerupType type) {
+    public void PowerUp(Powerup.Type type) {
 
         switch (type) {
 
-            case PowerupType.TripleShot:
+            case Powerup.Type.TripleShot:
                 canTripleShot = true;
                 break;
 
-            case PowerupType.MaxShot:
+            case Powerup.Type.MaxShot:
                 canMaxShot = true;
                 break;
 
-            case PowerupType.SpeedBoost:
+            case Powerup.Type.SpeedBoost:
                 speed = 7.5f;
                 break;
         }
-        StartCoroutine(Powerdown(type));
+        StartCoroutine(PowerDown(type));
+    }
+
+    public void Damage() {
+
+        lives--;
+
+        if (lives < 0) {
+            
+            Destroy(this.gameObject);
+        }
     }
 
 }  // end Player

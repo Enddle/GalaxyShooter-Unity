@@ -6,7 +6,7 @@ public class Powerup : MonoBehaviour {
 
     private float speed = 3f;
 
-    [SerializeField] private int powerupId = 0;
+    [SerializeField] private Type type = 0;
 
     // Start is called before the first frame update
     void Start() {
@@ -33,31 +33,17 @@ public class Powerup : MonoBehaviour {
                 // reach out to find the player object
             
             if (p != null) {
-
-                switch (this.powerupId) {
-                    
-                    case 1:  // Triple Shot
-
-                        p.Powerup(Player.PowerupType.TripleShot);
-                        break;
-
-                    case 2:  // Max Shot
-
-                        p.Powerup(Player.PowerupType.MaxShot);
-                        break;
-
-                    case 3:  // Speed Boost
-
-                        p.Powerup(Player.PowerupType.SpeedBoost);
-                        break;
-
-                    default:
-                        Debug.Log("Powerup Type Error.");
-                        break;
-                }
+            
+                p.PowerUp(type);
 
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    public enum Type {
+        TripleShot,
+        MaxShot,
+        SpeedBoost
     }
 }
