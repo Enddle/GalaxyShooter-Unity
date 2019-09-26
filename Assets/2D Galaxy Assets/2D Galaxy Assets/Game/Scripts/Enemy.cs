@@ -5,6 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     private float speed = 3f;
+
+    [SerializeField] private GameObject EnemyExplosion = null;
+
     // Start is called before the first frame update
     void Start() {
         
@@ -29,9 +32,13 @@ public class Enemy : MonoBehaviour {
             
                 if (other.transform.parent != null) {
 
+                    Instantiate(EnemyExplosion, transform.position, Quaternion.identity);
+
                     Destroy(other.transform.parent.gameObject);
                 
                 } else {
+
+                    Instantiate(EnemyExplosion, transform.position, Quaternion.identity);
 
                     Destroy(other.gameObject);
                         // erase the pic and all that goes with it
@@ -48,6 +55,8 @@ public class Enemy : MonoBehaviour {
                 if (p != null) {
 
                     p.Damage();
+
+                    Instantiate(EnemyExplosion, transform.position, Quaternion.identity);
 
                     Destroy(this.gameObject);
                 }

@@ -22,8 +22,10 @@ public class Player : MonoBehaviour {
     // instance fields - var with info
     public float speed = 5.0f;
 
-    [SerializeField] private GameObject LaserPrefab;
+    [SerializeField] private GameObject LaserPrefab = null;
         // SerializeField - shows in Unity
+
+    [SerializeField] private GameObject PlayerExplosion = null;
 
     private float fireRate = 0.25f;
     private float canFire = 0.05f;
@@ -170,6 +172,8 @@ public class Player : MonoBehaviour {
         lives--;
 
         if (lives < 0) {
+
+            Instantiate(PlayerExplosion, transform.position, Quaternion.identity);
             
             Destroy(this.gameObject);
         }

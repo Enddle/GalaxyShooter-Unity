@@ -697,7 +697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f890cc8460c3bf749aa66fe87856fb8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
 --- !u!212 &1292352764
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -791,7 +790,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661d160c8eb158942939457adeae9ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
 --- !u!212 &1359032594
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -942,6 +940,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   LaserPrefab: {fileID: 5078096281846081220, guid: 22a5186e69ba26e4199db938baa2fb70,
+    type: 3}
+  PlayerExplosion: {fileID: 1848251171055888842, guid: 08d641ec25268da48a35a42188ecf874,
     type: 3}
   TripleShotPrefab: {fileID: 7775464082254271867, guid: 30c2ef1dc5bfa2d45a61de9b7cafc8f5,
     type: 3}
