@@ -40,6 +40,8 @@ public class Player : MonoBehaviour {
 
     [SerializeField] private int lives = 3;
 
+    private bool canShield = false;
+
     // methods/functions - blocks of code
 
     // Start is called before the first frame update
@@ -163,19 +165,32 @@ public class Player : MonoBehaviour {
             case Powerup.Type.SpeedBoost:
                 speed = 7.5f;
                 break;
+            
+            case Powerup.Type.Shield:
+                canShield = true;
+                this.gameObject.transform.GetChild(0).gameObject.SetActive(canShield);
+                break;
         }
         StartCoroutine(PowerDown(type));
     }
 
     public void Damage() {
 
-        lives--;
-
-        if (lives < 0) {
-
-            Instantiate(PlayerExplosion, transform.position, Quaternion.identity);
+        if (canShield) {
             
-            Destroy(this.gameObject);
+            canShield = false;
+            this.gameObject.transform.GetChild(0).gameObject.SetActive(canShield);
+
+        } else {
+
+            lives--;
+
+            if (lives < 0) {
+
+                Instantiate(PlayerExplosion, transform.position, Quaternion.identity);
+                
+                Destroy(this.gameObject);
+            }
         }
     }
 

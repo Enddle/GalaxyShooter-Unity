@@ -42,8 +42,10 @@ public class Powerup : MonoBehaviour {
     }
 
     public enum Type {
+        None,
         TripleShot,
         MaxShot,
-        SpeedBoost
+        SpeedBoost,
+        Shield
     }
 }
