@@ -7,10 +7,12 @@ public class Enemy : MonoBehaviour {
     private float speed = 3f;
 
     [SerializeField] private GameObject EnemyExplosion = null;
+    private UIManager UI = null;
 
     // Start is called before the first frame update
     void Start() {
-        
+
+        UI = GameObject.Find("Canvas").GetComponent<UIManager>();
     }
 
     // Update is called once per frame
@@ -43,9 +45,14 @@ public class Enemy : MonoBehaviour {
                     Destroy(other.gameObject);
                         // erase the pic and all that goes with it
                 }
+                
+                if (UI != null) {
+
+                    UI.UpdateScores();
+                }
 
                 Destroy(this.gameObject);
-
+                    
                 break;
 
             case "Player":
@@ -57,6 +64,11 @@ public class Enemy : MonoBehaviour {
                     p.Damage();
 
                     Instantiate(EnemyExplosion, transform.position, Quaternion.identity);
+
+                    if (UI != null) {
+
+                        UI.UpdateScores();
+                    }
 
                     Destroy(this.gameObject);
                 }

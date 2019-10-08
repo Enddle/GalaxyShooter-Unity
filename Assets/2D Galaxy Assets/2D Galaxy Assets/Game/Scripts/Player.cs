@@ -42,15 +42,24 @@ public class Player : MonoBehaviour {
 
     private bool canShield = false;
 
+    private UIManager UI = null;
+
     // methods/functions - blocks of code
 
     // Start is called before the first frame update
     void Start() {
+
+        UI = GameObject.Find("Canvas").GetComponent<UIManager>();
+
+        if (UI != null) {
+            
+            UI.UpdateLives(lives);
+        }
         
-        Debug.Log("Hello World");
-        Debug.Log("Name: " + transform.name);
-        Debug.Log("Position: " + transform.position);
-        Debug.Log("X: " + transform.position.x);
+        // Debug.Log("Hello World");
+        // Debug.Log("Name: " + transform.name);
+        // Debug.Log("Position: " + transform.position);
+        // Debug.Log("X: " + transform.position.x);
 
         transform.position = new Vector3(0, 0, 0);
     }  // end Start
@@ -88,13 +97,13 @@ public class Player : MonoBehaviour {
             transform.position = new Vector3(transform.position.x, -3.6f, 0);
         }
 
-        if (transform.position.x > 8) {
+        if (transform.position.x > 9) {
             
-            transform.position = new Vector3(-8f, transform.position.y, 0);
+            transform.position = new Vector3(-9f, transform.position.y, 0);
 
-        } else if (transform.position.x < -8) {
+        } else if (transform.position.x < -9) {
             
-            transform.position = new Vector3(8f, transform.position.y, 0);
+            transform.position = new Vector3(9f, transform.position.y, 0);
         }
     }
 
@@ -184,6 +193,8 @@ public class Player : MonoBehaviour {
         } else {
 
             lives--;
+
+            UI.UpdateLives(lives);
 
             if (lives < 0) {
 
