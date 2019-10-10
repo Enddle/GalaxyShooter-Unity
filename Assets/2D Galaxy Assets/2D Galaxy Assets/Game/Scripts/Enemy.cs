@@ -8,15 +8,22 @@ public class Enemy : MonoBehaviour {
 
     [SerializeField] private GameObject EnemyExplosion = null;
     private UIManager UI = null;
+    private GameManager gameManager = null;
 
     // Start is called before the first frame update
     void Start() {
 
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update() {
+
+        if (gameManager.gameOver) {
+
+            Destroy(this.gameObject);
+        }
         
         transform.Translate(Vector3.down * speed * Time.deltaTime);
 

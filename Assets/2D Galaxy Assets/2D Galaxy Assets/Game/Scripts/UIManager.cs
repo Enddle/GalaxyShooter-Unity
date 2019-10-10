@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private Sprite[] LiveImages = null;
     [SerializeField] private Image LiveImageDisplay = null;
     [SerializeField] private Text ScoreText = null;
+    [SerializeField] private GameObject TitleScreen = null;
 
     private int score = 0;
 
@@ -35,5 +36,17 @@ public class UIManager : MonoBehaviour {
         score += 10;
 
         ScoreText.text = "Score: " + score;
+    }
+
+    public void HideTitleScreen() {
+
+        TitleScreen.SetActive(false);
+        score = 0;
+        ScoreText.text = "Score: " + score;
+    }
+
+    public void ShowTitleScreen() {
+        
+        TitleScreen.SetActive(true);
     }
 }

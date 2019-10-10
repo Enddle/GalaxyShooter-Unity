@@ -44,6 +44,9 @@ public class Player : MonoBehaviour {
 
     private UIManager UI = null;
 
+    private GameManager gameManager = null;
+    private SpawnManager spawnManager = null;
+
     // methods/functions - blocks of code
 
     // Start is called before the first frame update
@@ -54,6 +57,15 @@ public class Player : MonoBehaviour {
         if (UI != null) {
             
             UI.UpdateLives(lives);
+        }
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+
+        if (spawnManager != null) {
+
+            spawnManager.StartSpawnRoutines();
         }
         
         // Debug.Log("Hello World");
@@ -199,7 +211,9 @@ public class Player : MonoBehaviour {
             if (lives < 0) {
 
                 Instantiate(PlayerExplosion, transform.position, Quaternion.identity);
-                
+                UI.ShowTitleScreen();
+                gameManager.gameOver = true;
+                Debug.Log("Game Over");
                 Destroy(this.gameObject);
             }
         }

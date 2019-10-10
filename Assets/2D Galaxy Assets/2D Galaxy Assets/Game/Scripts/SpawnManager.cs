@@ -8,12 +8,14 @@ public class SpawnManager : MonoBehaviour {
     [SerializeField] private GameObject[] PowerupPrefabs = null;
         // [] means an array
 
+    private GameManager gameManager = null;
+
     // Start is called before the first frame update
     void Start() {
-        
-        StartCoroutine(EnemySpawnRoutine());
 
-        StartCoroutine(PowerupSpawnRoutine());
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        
+        StartSpawnRoutines();
     }
 
     // Update is called once per frame
@@ -23,7 +25,7 @@ public class SpawnManager : MonoBehaviour {
 
     private IEnumerator EnemySpawnRoutine() {
 
-        while (true) {
+        while (!gameManager.gameOver) {
 
             Instantiate(EnemyPrefab, new Vector3(Random.Range(-7.5f, 7.5f), 6.5f, 0f), Quaternion.identity);
             Instantiate(EnemyPrefab, new Vector3(Random.Range(-7.5f, 7.5f), 6.5f, 0f), Quaternion.identity);
@@ -34,7 +36,7 @@ public class SpawnManager : MonoBehaviour {
 
     private IEnumerator PowerupSpawnRoutine() {
 
-        while (true) {
+        while (!gameManager.gameOver) {
 
             int r = Random.Range(0,4);
 
@@ -42,6 +44,13 @@ public class SpawnManager : MonoBehaviour {
 
             yield return new WaitForSeconds(10.0f);
         }
+    }
+
+    public void StartSpawnRoutines() {
+        
+        StartCoroutine(EnemySpawnRoutine());
+
+        StartCoroutine(PowerupSpawnRoutine());
     }
 
 }
