@@ -15,6 +15,8 @@ public class ExplosionEffect : MonoBehaviour {
 
         // float length = this.GetComponent<Animator>().GetNextAnimatorStateInfo(0).length;
 
+        GetComponent<AudioSource>().Play();
+
         Destroy(this.gameObject, this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
     }
 

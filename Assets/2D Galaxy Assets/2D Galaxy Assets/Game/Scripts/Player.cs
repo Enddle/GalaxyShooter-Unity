@@ -46,6 +46,7 @@ public class Player : MonoBehaviour {
 
     private GameManager gameManager = null;
     private SpawnManager spawnManager = null;
+    private AudioSource laserSound = null;
 
     // methods/functions - blocks of code
 
@@ -67,6 +68,10 @@ public class Player : MonoBehaviour {
 
             spawnManager.StartSpawnRoutines();
         }
+
+        laserSound = GetComponent<AudioSource>();
+            // dont need Find() or Other
+            // is a component of player
         
         // Debug.Log("Hello World");
         // Debug.Log("Name: " + transform.name);
@@ -129,6 +134,8 @@ public class Player : MonoBehaviour {
 
             if (Time.time > canFire) {
                 // Time.time: the time playing the game
+
+                laserSound.Play();
                 
                 if (canMaxShot) {
 

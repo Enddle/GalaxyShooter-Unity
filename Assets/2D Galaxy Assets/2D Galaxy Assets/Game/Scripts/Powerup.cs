@@ -7,6 +7,7 @@ public class Powerup : MonoBehaviour {
     private float speed = 3f;
 
     [SerializeField] private Type type = 0;
+    [SerializeField] private AudioClip powerupClip = null;
 
     // Start is called before the first frame update
     void Start() {
@@ -35,6 +36,9 @@ public class Powerup : MonoBehaviour {
             if (p != null) {
             
                 p.PowerUp(type);
+
+                if (powerupClip == null) Debug.Log("no powerup clip.");
+                AudioSource.PlayClipAtPoint(powerupClip, Camera.main.transform.position);
 
                 Destroy(this.gameObject);
             }
