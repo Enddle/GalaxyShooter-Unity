@@ -47,6 +47,9 @@ public class Player : MonoBehaviour {
     private GameManager gameManager = null;
     private SpawnManager spawnManager = null;
     private AudioSource laserSound = null;
+    
+    [SerializeField] private GameObject[] EngineFires = null;
+
 
     // methods/functions - blocks of code
 
@@ -213,9 +216,18 @@ public class Player : MonoBehaviour {
 
             lives--;
 
+            switch(lives) {
+                case 2:
+                    EngineFires[0].SetActive(true);
+                    break;
+                case 1:
+                    EngineFires[1].SetActive(true);
+                    break;
+            }
+
             UI.UpdateLives(lives);
 
-            if (lives < 0) {
+            if (lives < 1) {
 
                 Instantiate(PlayerExplosion, transform.position, Quaternion.identity);
                 UI.ShowTitleScreen();

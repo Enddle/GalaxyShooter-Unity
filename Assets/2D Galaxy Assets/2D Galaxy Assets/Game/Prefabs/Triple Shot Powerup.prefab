@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6341840429490710008}
   - component: {fileID: 6341840429490710009}
   - component: {fileID: 6341840429490710014}
+  - component: {fileID: 8147421624560467618}
   m_Layer: 0
   m_Name: Triple Shot Powerup
   m_TagString: Untagged
@@ -112,3 +113,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.03}
   serializedVersion: 2
   m_Radius: 0.54
+--- !u!95 &8147421624560467618
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6341840429490710010}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3817405592e6c554abcf05182958604a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
